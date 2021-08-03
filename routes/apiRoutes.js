@@ -49,16 +49,17 @@ router.post("/api/workouts", ({ body }, res) => {
 });
 
 // Show Workout Range
-router.get("/api/workouts/range", (req, res) => {
-  Workout.find({})
-    .then((dbWorkout) => {
-      console.log("Showing All Workouts");
-      console.log(dbWorkout);
-      res.json(dbWorkout);
-    })
-    .catch((err) => {
-      res.json(err);
-    });
+router.get("/api/workouts/range", async (req, res) => {
+  try {
+    const workouts = await Workout.aggregate([])
+      .limit(7)
+      .sort({ day: -1 })
+      .addFields({ totalDuration: { $sum: "$exercises.duration" } });
+    res.status(200).json(workouts);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json(error);
+  }
 });
 
 module.exports = router;
