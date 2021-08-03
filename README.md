@@ -40,7 +40,7 @@ Below are links to access the deployed video link and repository.
 
 Github Repository: https://github.com/bergannation/18_WorkoutTracker
 
-Deployed Heroku Link:
+Deployed Heroku Link: https://bergan-workout-tracker.herokuapp.com/?id=61099adbc0d7640015d15a9f
 
 ## Description
 
